@@ -41,7 +41,6 @@ function Header() {
       </div>
  
       <nav className="header-nav">
-        <h6>{textoBusca}</h6>
       </nav>
     </header>
   );

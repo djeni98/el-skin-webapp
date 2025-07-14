@@ -2,8 +2,9 @@ import img1 from '../../assets/img1.png';
 import './Carrosel.css'
 
 function Carrosel() {
+  const bgCarrosel = {backgroundImage: `url(${img1})`}
   return (
-    <img className="img-carrosel" src={img1} alt="carrosel" />
+    <div className="img-carrosel" style={bgCarrosel} />
   )
 }
 
