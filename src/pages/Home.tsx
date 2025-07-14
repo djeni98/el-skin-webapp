@@ -1,8 +1,12 @@
 import Header from "../components/Header/Header";
+import PromoBanner from "../components/PromoBanner/PromoBanner";
 
 function Home() {
   return (
-    <Header />
+    <>
+      <Header /> 
+      <PromoBanner />
+    </>
   );
 }
 
