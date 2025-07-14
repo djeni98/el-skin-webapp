@@ -55,9 +55,6 @@
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
   color: #666;
@@ -78,9 +75,6 @@
 }
  
 .cart-button {
-  background: none;
-  border: none;
-  cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
   color: #333;
