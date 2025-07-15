@@ -1,5 +1,6 @@
 .product-list {
   flex-direction: column;
+  margin-bottom: 6rem;
 }
 
 .product-list-title {

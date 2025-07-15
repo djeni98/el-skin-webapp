@@ -1,6 +1,6 @@
 import Carrosel from "../components/Carrosel/Carrosel";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
-import ProductCard from "../components/ProductCard/ProductCard";
 import ProductList from "../components/ProductList/ProductList";
 import PromoBanner from "../components/PromoBanner/PromoBanner";
 
@@ -11,6 +11,7 @@ function Home() {
       <PromoBanner />
       <Carrosel />
       <ProductList />
+      <Footer />
     </>
   );
 }
