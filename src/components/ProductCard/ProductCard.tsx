@@ -1,7 +1,7 @@
-import "./ProductCard.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
-import { createRef } from "react";
+import './ProductCard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { createRef } from 'react';
 
 export interface IProduct {
   id: string;
@@ -29,7 +29,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
   }
 
   function handleKeyDownInProduct(event: React.KeyboardEvent) {
-    const activateKeys = ["Enter", " "];
+    const activateKeys = ['Enter', ' '];
 
     if (!activateKeys.includes(event.key)) {
       return;
@@ -71,7 +71,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default ProductCard
+export default ProductCard;

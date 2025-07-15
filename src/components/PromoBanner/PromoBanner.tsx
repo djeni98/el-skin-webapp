@@ -1,4 +1,4 @@
-import "./PromoBanner.css";
+import './PromoBanner.css';
 
 function PromoBanner() {
   return (
@@ -9,7 +9,7 @@ function PromoBanner() {
         <span className="codigo-promo">PRIMEIRA25</span>
       </div>
     </div>
-  )
+  );
 }
 
 export default PromoBanner;
