@@ -25,12 +25,26 @@ function ProductList() {
     { ...productX, id: "item-7"},
   ]
 
+  function handleProductClick(productId: string) {
+    console.log(`Clicou no produto ${productId}`);
+  }
+
+  function handleBuyClick(productId: string, event: React.MouseEvent) {
+    event.stopPropagation();
+    console.log(`Comprar produto ${productId}`);
+  }
+
   return (
     <section className="product-list container">
       <h2 className="product-list-title">nossos queridinhos estão aqui</h2>
       <div className="product-items">
         { productList.map((item) => (
-          <ProductCard product={item} key={item.id} />
+          <ProductCard
+            key={item.id}
+            product={item}
+            onProductClick={handleProductClick}
+            onBuyClick={handleBuyClick}
+          />
         ))}
       </div>
     </section>

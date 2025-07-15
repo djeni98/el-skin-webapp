@@ -1,6 +1,7 @@
 import "./ProductCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingBag } from "@fortawesome/free-solid-svg-icons";
+import { createRef } from "react";
 
 export interface IProduct {
   id: string;
@@ -15,18 +16,43 @@ export interface IProduct {
 }
 
 export interface IProductCardProps {
-  product: IProduct
+  product: IProduct,
+  onProductClick: (productId: string) => void;
+  onBuyClick: (productId: string, event: React.MouseEvent) => void;
 }
 
 function ProductCard(props: Readonly<IProductCardProps>) {
-  const product = props.product;
+  const { product, onProductClick, onBuyClick } = props;
 
   function formatPrice(price: number): string {
     return `R$ ${price.toFixed(2).replace('.', ',')}`;
   }
 
+  function handleKeyDownInProduct(event: React.KeyboardEvent) {
+    const activateKeys = ["Enter", " "];
+
+    if (!activateKeys.includes(event.key)) {
+      return;
+    }
+
+    if (event.target !== cardDiv.current) {
+      return;
+    }
+
+    onProductClick(product.id);
+  }
+
+  const cardDiv = createRef<HTMLDivElement>();
+
   return (
-    <div className="product-card">
+    /* Div usando role button, pois não pode usar button dentro de button */
+    <div
+      ref={cardDiv}
+      role="button" tabIndex={0}
+      onClick={() => onProductClick(product.id)}
+      onKeyDown={(e) => handleKeyDownInProduct(e)}
+      className="product-card"
+    >
       <div className="img-product">
         <img src={product.image} alt={product.name} />
       </div>
@@ -39,7 +65,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
       </div>
       <div className="buy-section">
         <span className="buy-price">{formatPrice(product.price)}</span>
-        <button className="buy-button">
+        <button className="buy-button" onClick={(e) => onBuyClick(product.id, e)}>
           comprar 
           <FontAwesomeIcon icon={faShoppingBag} />
         </button>
