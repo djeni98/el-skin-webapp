@@ -87,4 +87,33 @@
 .cart-button:hover {
   background-color: #f0f0f0;
 }
- 
+
+.header-nav {
+  padding: 8px 0px;
+}
+
+.header-nav-itens {
+  display: flex;
+  flex: 1;
+  gap: 5rem;
+}
+
+.header-nav-item {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
+
+.header-nav-item:hover {
+  text-decoration: underline;
+}
+
+.promo-link {
+  text-decoration: none;
+  color: #e2454d;
+  font-weight: 700;
+}
+
+.promo-link:hover {
+  text-decoration: underline;
+}
