@@ -6,6 +6,7 @@ export const API_CONFIG = {
   // Endpoints
   ENDPOINTS: {
     CAROUSEL: '/carousel',
+    PRODUCTS: '/products',
   },
   
   // Headers padrão

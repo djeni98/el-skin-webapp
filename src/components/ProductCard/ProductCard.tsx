@@ -2,18 +2,7 @@ import './ProductCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { createRef } from 'react';
-
-export interface IProduct {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  tags: Array<{
-    label: string;
-    backgroundColor: 'pink' | 'seal';
-  }>;
-}
+import { IProduct } from '../../service/productService';
 
 export interface IProductCardProps {
   product: IProduct,
@@ -42,6 +31,13 @@ function ProductCard(props: Readonly<IProductCardProps>) {
     onProductClick(product.id);
   }
 
+  function getTagClassNameByType(tag_type: string): string {
+    if (tag_type == 'protection') {
+      return 'tag-product bg-seal';
+    }
+    return 'tag-product bg-pink';
+  }
+
   const cardDiv = createRef<HTMLDivElement>();
 
   return (
@@ -60,7 +56,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
       <span className="product-description">{product.description}</span>
       <div className="tags-list-product">
         { product.tags.map((tag) => (
-          <span className={`tag-product bg-${tag.backgroundColor}`} key={tag.label}>{tag.label}</span>
+          <span className={getTagClassNameByType(tag.type)} key={tag.label}>{tag.label}</span>
         ))}
       </div>
       <div className="buy-section">
