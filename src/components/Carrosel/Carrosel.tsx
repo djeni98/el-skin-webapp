@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import './Carrosel.css';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import { carouselService } from '../../service/carroselService';
 
 interface ICarouselItem {
   subtitle: string;
@@ -24,16 +24,9 @@ function Carrosel() {
     setIdxItemAtual((prevIdx) => (prevIdx === items.length - 1 ? 0 : prevIdx + 1));
   }
 
-  function requestCarroselItems() {
-    axios.get<ICarouselItem[]>('http://localhost:3001/carousel')
-      .then((response) => {
-        const data = response.data;
-        setItems(data);
-        console.log('API-Carousel - OK');
-      })
-      .catch((err) => {
-        console.log(`API-Carousel - Err : ${err}`);
-      });
+  async function requestCarroselItems() {
+    const newItems = await carouselService.getCarouselItems();
+    setItems(newItems);
   }
 
   function getStyleForImgCarrosel(img: string) {
