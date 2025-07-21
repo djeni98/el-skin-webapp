@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
 import { useSearchContext } from '../../context/SearchContext';
+import CartModal from '../CartModal/CartModal';
+import { useCartContext } from '../../context/CartContext';
  
 function Header() {
   const navLinks = [
@@ -12,7 +14,13 @@ function Header() {
     { name: 'Ingredientes', href: '/ingredientes' },
   ];
 
+  const { items } = useCartContext();
   const { search, setSearch } = useSearchContext();
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  
+  const handleCloseCart = () => {
+    setIsCartModalOpen(false);
+  };
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
@@ -20,6 +28,10 @@ function Header() {
 
   function onClickSearch(): void {
     console.log(`Você pesquisou por: ${search}`);
+  }
+
+  function handleOnClickCart() {
+    setIsCartModalOpen(true);
   }
 
   return (
@@ -42,7 +54,7 @@ function Header() {
           </div>
  
           <div className="header-actions">
-            <button className="cart-button">
+            <button className="cart-button" onClick={handleOnClickCart}>
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
           </div>
@@ -62,6 +74,11 @@ function Header() {
           </div>
         </div>
       </nav>
+      <CartModal
+        isOpen={isCartModalOpen}
+        onClose={handleCloseCart}
+        items={items}
+      />
     </header>
   );
 }
