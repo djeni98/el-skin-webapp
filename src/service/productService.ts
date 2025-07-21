@@ -7,10 +7,7 @@ export interface IProduct {
   description: string;
   price: number;
   image: string;
-  tags: Array<{
-    label: string;
-    type: 'protection' | 'face';
-  }>;
+  tags: string[];
 }
  
 export const productService = {

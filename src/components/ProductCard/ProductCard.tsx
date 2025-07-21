@@ -32,7 +32,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
   }
 
   function getTagClassNameByType(tag_type: string): string {
-    if (tag_type == 'protection') {
+    if (['protection', 'exfoliation', 'hydration'].includes(tag_type)) {
       return 'tag-product bg-seal';
     }
     return 'tag-product bg-pink';
@@ -56,7 +56,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
       <span className="product-description">{product.description}</span>
       <div className="tags-list-product">
         { product.tags.map((tag) => (
-          <span className={getTagClassNameByType(tag.type)} key={tag.label}>{tag.label}</span>
+          <span className={getTagClassNameByType(tag)} key={tag}>{tag}</span>
         ))}
       </div>
       <div className="buy-section">
