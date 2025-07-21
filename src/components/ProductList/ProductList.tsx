@@ -1,10 +1,14 @@
 import ProductCard from '../ProductCard/ProductCard';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { IProduct, productService } from '../../service/productService';
 import './ProductList.css';
+import { SearchContext } from '../../context/SearchContext';
 
 function ProductList() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+
+  const { search } = useContext(SearchContext);
 
   function handleProductClick(productId: string) {
     console.log(`Clicou no produto ${productId}`);
@@ -20,16 +24,30 @@ function ProductList() {
     setProducts(fetchedProducts);
   }
 
+  function updateFilteredProducts() {
+    if (search) {
+      setFilteredProducts(products.filter(product =>
+        product.name.toLowerCase().includes(search.toLowerCase()) ||
+        product.description.toLowerCase().includes(search.toLowerCase())
+      ));
+    } else {
+      setFilteredProducts([...products]);
+    }
+  }
 
   useEffect(() => {
     requestProducts();
   }, []);
 
+  useEffect(() => {
+    updateFilteredProducts();
+  }, [search, products]);
+
   return (
     <section className="product-list container">
       <h2 className="product-list-title">nossos queridinhos estão aqui</h2>
       <div className="product-items">
-        { products.map((item) => (
+        { filteredProducts.map((item) => (
           <ProductCard
             key={item.id}
             product={item}
