@@ -1,14 +1,14 @@
 import ProductCard from '../ProductCard/ProductCard';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IProduct, productService } from '../../service/productService';
 import './ProductList.css';
-import { SearchContext } from '../../context/SearchContext';
+import { useSearchContext } from '../../context/SearchContext';
 
 function ProductList() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
-  const { search } = useContext(SearchContext);
+  const { search } = useSearchContext();
 
   function handleProductClick(productId: string) {
     console.log(`Clicou no produto ${productId}`);

@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import './App.css';
-import { SearchContext } from './context/SearchContext';
+import { SearchProvider } from './context/SearchContext';
 import AppRouter from './routes';
 
 function App() {
-  const [search, setSearch] = useState('');
   return (
-    <SearchContext value={{search: search, setSearch: setSearch}}>
+    <SearchProvider>
       <AppRouter />
-    </SearchContext>
+    </SearchProvider>
   );
 }
 

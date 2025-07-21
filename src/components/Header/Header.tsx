@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
-import { SearchContext } from '../../context/SearchContext';
+import { useSearchContext } from '../../context/SearchContext';
  
 function Header() {
   const navLinks = [
@@ -12,7 +12,7 @@ function Header() {
     { name: 'Ingredientes', href: '/ingredientes' },
   ];
 
-  const { search, setSearch } = useContext(SearchContext);
+  const { search, setSearch } = useSearchContext();
 
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setSearch(e.target.value);
