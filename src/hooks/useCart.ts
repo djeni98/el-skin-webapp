@@ -1,13 +1,13 @@
-import { useState, useCallback } from 'react';
-
-interface IItem {
+import { useCallback, useReducer } from 'react';
+import { ADD_PRODUCT, cartReducer, CLEAR_CART, REMOVE_PRODUCT, UPDATE_QUANTITY } from '../reducers/cartReducer';
+export interface IItem {
   id: string;
   name: string;
   price: number;
   image: string;
 }
 
-interface ICartItem extends IItem {
+export interface ICartItem extends IItem {
   quantity: number
 }
 
@@ -22,43 +22,29 @@ export interface UseCartReturn {
 }
 
 export const useCart = (): UseCartReturn => {
-  const [items, setItems] = useState<ICartItem[]>([]);
+  const [items, dispatch] = useReducer(cartReducer, []);
+  const cartExample = {
+    quantity: 0,
+    id: '',
+    name: '',
+    price: 0,
+    image: ''
+  };
 
   const addItem = useCallback((newItem: IItem) => {
-    setItems(currentItems => {
-      const existingItem = currentItems.find(item => item.id === newItem.id);
-      
-      if (existingItem) {
-        return currentItems.map(item =>
-          item.id === newItem.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      
-      return [...currentItems, { ...newItem, quantity: 1 }];
-    });
+    dispatch({ type: ADD_PRODUCT, payload: { ...newItem, quantity: 1 } });
   }, []);
 
   const removeItem = useCallback((id: string) => {
-    setItems(currentItems => currentItems.filter(item => item.id !== id));
+    dispatch({ type: REMOVE_PRODUCT, payload: { ...cartExample, id } });
   }, []);
 
   const updateQuantity = useCallback((id: string, quantity: number) => {
-    if (quantity <= 0) {
-      removeItem(id);
-      return;
-    }
-    
-    setItems(currentItems =>
-      currentItems.map(item =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
-  }, [removeItem]);
+    dispatch({ type: UPDATE_QUANTITY, payload: { ...cartExample, id, quantity} });
+  }, []);
 
   const clearCart = useCallback(() => {
-    setItems([]);
+    dispatch({ type: CLEAR_CART, payload: { ...cartExample} });
   }, []);
 
   const getTotalItems = useCallback(() => {
