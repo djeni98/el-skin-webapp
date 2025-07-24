@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import { createRef } from 'react';
 import { IProduct } from '../../service/productService';
+import { formatPrice } from '../../formatters/price';
 
 export interface IProductCardProps {
   product: IProduct,
@@ -12,10 +13,6 @@ export interface IProductCardProps {
 
 function ProductCard(props: Readonly<IProductCardProps>) {
   const { product, onProductClick, onBuyClick } = props;
-
-  function formatPrice(price: number): string {
-    return `R$ ${price.toFixed(2).replace('.', ',')}`;
-  }
 
   function handleKeyDownInProduct(event: React.KeyboardEvent) {
     const activateKeys = ['Enter', ' '];
