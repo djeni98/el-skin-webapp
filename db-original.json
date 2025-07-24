@@ -5,21 +5,24 @@
       "subtitle": "confira nossa linha",
       "title": "corporal",
       "description": "com benefícios além da hidratação",
-      "backgroundImage": "/assets/img1.png"
+      "backgroundImage": "/assets/img1.png",
+      "textPosition": "left"
     },
     {
       "id": 2,
       "subtitle": "toda linha",
       "title": "anti-age",
       "description": "use o cupom ANTIAGE15",
-      "backgroundImage": "/assets/img2.png"
+      "backgroundImage": "/assets/img2.png",
+      "textPosition": "left"
     },
     {
       "id": 3,
       "subtitle": "",
       "title": "kits incríveis",
       "description": "até 50% OFF",
-      "backgroundImage": "/assets/img3.png"
+      "backgroundImage": "/assets/img3.png",
+      "textPosition": "right"
     }
   ],
   "products": [
@@ -28,7 +31,7 @@
       "name": "Creme Hidratante Facial",
       "description": "Creme nutritivo para hidratação profunda da pele do rosto, com extrato de aloe vera.",
       "price": 45.99,
-      "image": "/assets/prod1.png",
+      "image": "/assets/prod1.jpg",
       "tags": [
         "face",
         "hydration"
@@ -39,7 +42,7 @@
       "name": "Protetor Solar SPF 50",
       "description": "Protetor solar de alta proteção contra raios UVA/UVB, resistente à água.",
       "price": 89.90,
-      "image": "/assets/prod2.png",
+      "image": "/assets/prod2.jpg",
       "tags": [
         "protection",
         "sun"
@@ -50,7 +53,7 @@
       "name": "Máscara de Argila Verde",
       "description": "Máscara purificante para controle de oleosidade e limpeza dos poros.",
       "price": 32.50,
-      "image": "/assets/prod3.png",
+      "image": "/assets/prod3.jpg",
       "tags": [
         "face",
         "cleansing"
@@ -61,7 +64,7 @@
       "name": "Sérum Antirrugas",
       "description": "Sérum com ácido hialurônico para redução de linhas finas e rugas.",
       "price": 78.20,
-      "image": "/assets/prod4.png",
+      "image": "/assets/prod4.jpg",
       "tags": [
         "face",
         "anti-aging"
@@ -72,7 +75,7 @@
       "name": "Bálsamo Labial Hidratante",
       "description": "Bálsamo com manteiga de karité para lábios ressecados e proteção diária.",
       "price": 12.75,
-      "image": "/assets/prod5.png",
+      "image": "/assets/prod5.jpg",
       "tags": [
         "lips",
         "hydration"
@@ -83,7 +86,7 @@
       "name": "Esfoliante Facial",
       "description": "Esfoliante suave com microesferas naturais para renovação da pele.",
       "price": 25.80,
-      "image": "/assets/prod6.png",
+      "image": "/assets/prod6.jpg",
       "tags": [
         "face",
         "exfoliation"
@@ -94,7 +97,7 @@
       "name": "Tônico Revitalizante",
       "description": "Tônico refrescante com extrato de chá verde para equilibrar o pH da pele.",
       "price": 38.40,
-      "image": "/assets/prod7.png",
+      "image": "/assets/prod7.jpg",
       "tags": [
         "face",
         "toning"
@@ -105,7 +108,7 @@
       "name": "Óleo Corporal Hidratante",
       "description": "Óleo leve com fragrância de lavanda para hidratação intensiva da pele.",
       "price": 65.30,
-      "image": "/assets/prod8.png",
+      "image": "/assets/prod8.jpg",
       "tags": [
         "body",
         "hydration"
