@@ -14,7 +14,7 @@ function Header() {
     { name: 'Ingredientes', href: '/ingredientes' },
   ];
 
-  const { items } = useCartContext();
+  const { getTotalItems } = useCartContext();
   const { search, setSearch } = useSearchContext();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   
@@ -57,6 +57,9 @@ function Header() {
             <button className="cart-button" onClick={handleOnClickCart}>
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
+            <span className='cart-total-items'>
+              {getTotalItems()}
+            </span>
           </div>
         </div>
       </div>
