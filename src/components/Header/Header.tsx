@@ -77,7 +77,6 @@ function Header() {
       <CartModal
         isOpen={isCartModalOpen}
         onClose={handleCloseCart}
-        items={items}
       />
     </header>
   );

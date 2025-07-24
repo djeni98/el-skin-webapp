@@ -1,23 +1,33 @@
 import ProductCard from '../ProductCard/ProductCard';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IProduct, productService } from '../../service/productService';
 import './ProductList.css';
 import { useSearchContext } from '../../context/SearchContext';
+import { useCartContext } from '../../context/CartContext';
 
 function ProductList() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const { search } = useSearchContext();
+  const { addItem } = useCartContext();
 
   function handleProductClick(productId: string) {
     console.log(`Clicou no produto ${productId}`);
   }
 
-  function handleBuyClick(productId: string, event: React.MouseEvent) {
+  const handleBuyClick = useCallback((productId: string, event: React.MouseEvent) => {
     event.stopPropagation();
     console.log(`Comprar produto ${productId}`);
-  }
+    const produtoComprado = products.find(product => product.id === productId);
+
+    if(!produtoComprado) {
+      console.error(`Produto com ID ${productId} não encontrado.`);
+      return;
+    }
+
+    addItem(produtoComprado);
+  }, [products, addItem]);
 
   async function requestProducts() {
     const fetchedProducts = await productService.getProducts();

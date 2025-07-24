@@ -2,16 +2,17 @@ import { faMinus, faPlus, faTimes, faTrash } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import './CartModal.css';
-import { CartItem } from '../../context/CartContext';
+import { useCartContext } from '../../context/CartContext';
+import { formatPrice } from '../../formatters/price';
 
 interface CartModalProps {
   isOpen: boolean;
   onClose: () => void;
-  items: CartItem[];
 }
 
-function CartModal({ isOpen, onClose, items }: Readonly<CartModalProps>) {
+function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
   if (!isOpen) return null;
+  const { items, updateQuantity, removeItem, getTotalPrice } = useCartContext();
 
   function handleBackdropClick(e: React.MouseEvent) {
     if (e.target === e.currentTarget) {
@@ -65,12 +66,14 @@ function CartModal({ isOpen, onClose, items }: Readonly<CartModalProps>) {
                         <div className="quantity-controls">
                           <button 
                             className="quantity-btn"
+                            onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
                           >
                             <FontAwesomeIcon icon={faMinus} />
                           </button>
                           <span className="quantity-display">{item.quantity}</span>
                           <button 
                             className="quantity-btn"
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           >
                             <FontAwesomeIcon icon={faPlus} />
                           </button>
@@ -79,13 +82,14 @@ function CartModal({ isOpen, onClose, items }: Readonly<CartModalProps>) {
                         <button 
                           className="remove-btn"
                           title="Remover item"
+                          onClick={() => removeItem(item.id)}
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
                       </div>
                       
                       <div className="cart-item-price">
-                        {item.price * item.quantity}
+                        {formatPrice(item.price * item.quantity)}
                       </div>
                     </div>
                   </div>
@@ -94,7 +98,7 @@ function CartModal({ isOpen, onClose, items }: Readonly<CartModalProps>) {
 
               <div className="cart-total">
                 <span className="total-label">Total</span>
-                <span className="total-price">0</span>
+                <span className="total-price">{formatPrice(getTotalPrice())}</span>
               </div>
 
               <button 
