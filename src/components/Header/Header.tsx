@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import './Header.css';
+import { useSearchContext } from '../../context/SearchContext';
+import CartModal from '../CartModal/CartModal';
+import { useCartContext } from '../../context/CartContext';
  
 function Header() {
   const navLinks = [
@@ -11,13 +14,24 @@ function Header() {
     { name: 'Ingredientes', href: '/ingredientes' },
   ];
 
-  const [textoBusca, setTextoBusca] = useState('valor inicial do texto');
+  const { getTotalItems } = useCartContext();
+  const { search, setSearch } = useSearchContext();
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false);
+  
+  const handleCloseCart = () => {
+    setIsCartModalOpen(false);
+  };
+
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setTextoBusca(e.target.value);
+    setSearch(e.target.value);
   }
 
   function onClickSearch(): void {
-    console.log(`Você pesquisou por: ${textoBusca}`);
+    console.log(`Você pesquisou por: ${search}`);
+  }
+
+  function handleOnClickCart() {
+    setIsCartModalOpen(true);
   }
 
   return (
@@ -40,9 +54,12 @@ function Header() {
           </div>
  
           <div className="header-actions">
-            <button className="cart-button">
+            <button className="cart-button" onClick={handleOnClickCart}>
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
+            <span className='cart-total-items'>
+              {getTotalItems()}
+            </span>
           </div>
         </div>
       </div>
@@ -60,6 +77,10 @@ function Header() {
           </div>
         </div>
       </nav>
+      <CartModal
+        isOpen={isCartModalOpen}
+        onClose={handleCloseCart}
+      />
     </header>
   );
 }

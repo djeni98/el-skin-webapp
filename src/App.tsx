@@ -1,11 +1,15 @@
 import './App.css';
-import Home from './pages/Home';
+import { CartProvider } from './context/CartContext';
+import { SearchProvider } from './context/SearchContext';
+import AppRouter from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <CartProvider>
+      <SearchProvider>
+        <AppRouter />
+      </SearchProvider>
+    </CartProvider>
   );
 }
 
