@@ -4,6 +4,7 @@ import img2 from '../../assets/img-sobre-2.png';
 import img3 from '../../assets/img-sobre-3.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 
 function Sobre() {
   const content = [
@@ -27,10 +28,10 @@ function Sobre() {
         <div className="sobre-content">
           <h2>Sobre a AL SKIN</h2>
           { content.map((subsection) => (
-            <>
+            <React.Fragment key={subsection.title}>
               <p className="subsection-title">{subsection.title}</p>
               <p className="subsection-description">{subsection.description}</p>
-            </>
+            </React.Fragment>
           ))}
           <img className="img-left-column" src={img1} alt="Imagem ilustrativa" />
         </div>
