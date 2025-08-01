@@ -45,6 +45,22 @@ test('deve acionar o método onProductClick quando o produto for clicado', () =>
   expect(handleProductClick).toHaveBeenCalledTimes(1);
 });
 
+test('deve acionar o método onProductClick quando tecla Enter ou <Space> for acionada', () => {
+  // Act
+  render(<ProductCard
+    product={product}
+    onProductClick={handleProductClick}
+    onBuyClick={handleBuyClick}
+  />);
+
+  const card = screen.getByTestId('product-card');
+  fireEvent.keyDown(card, { key: 'Enter'});
+
+  // Assert
+  expect(handleProductClick).toBeCalledWith(product.id);
+  expect(handleProductClick).toHaveBeenCalledTimes(1);
+});
+
 test('deve acionar o método onBuyClick quando o botão comprar for clicado', () => {
   // Act
   render(<ProductCard
