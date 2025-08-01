@@ -28,6 +28,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
 
   return (
     <div 
+      data-testid='cart-modal'
       className="cart-modal-overlay" 
       onClick={handleBackdropClick}
       onKeyDown={handleBackdropKeyDown}
@@ -39,7 +40,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
       <div className="cart-modal">
         <div className="cart-modal-header">
           <h2 id="cart-modal-title">Carrinho</h2>
-          <button className="cart-modal-close" onClick={onClose}>
+          <button data-testid="cart-modal-close" className="cart-modal-close" onClick={onClose}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
