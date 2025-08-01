@@ -40,6 +40,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
   return (
     /* Div usando role button, pois não pode usar button dentro de button */
     <div
+      data-testid="product-card"
       ref={cardDiv}
       role="button" tabIndex={0}
       onClick={() => onProductClick(product.id)}
