@@ -50,7 +50,7 @@ function Carrosel() {
       {item &&
         <div className="img-carrosel" style={getStyleForImgCarrosel(item.backgroundImage)}>
           <div className="container flex-1">
-            <button className='carrosel-button' onClick={previousItem}>
+            <button className='carrosel-button' onClick={previousItem} data-testid='previous-item'>
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
 
@@ -58,7 +58,7 @@ function Carrosel() {
 
             <div className='carrosel-text'>
               <span className='carrosel-subtitle'>{item.subtitle}</span>
-              <h1 className='carrosel-title'>{item.title}</h1>
+              <h1 className='carrosel-title' data-testid='carrosel-title'>{item.title}</h1>
               <p className='carrosel-description'>{item.description}</p>
               <button className='carrosel-buy-button'>
                 comprar agora
@@ -68,8 +68,8 @@ function Carrosel() {
 
             {item.textPosition === 'left' && <div className='flex-1' />}
 
-            <button className='carrosel-button'>
-              <FontAwesomeIcon icon={faArrowRight} onClick={nextItem} />
+            <button className='carrosel-button' data-testid='next-item' onClick={nextItem}>
+              <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </div>
         </div>
