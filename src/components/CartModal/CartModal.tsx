@@ -28,7 +28,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
 
   return (
     <div 
-      data-testid='cart-modal'
+      data-testid='cart-modal-overlay'
       className="cart-modal-overlay" 
       onClick={handleBackdropClick}
       onKeyDown={handleBackdropKeyDown}
@@ -37,7 +37,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
       aria-labelledby="cart-modal-title"
       tabIndex={-1}
     >
-      <div className="cart-modal">
+      <div className="cart-modal" data-testid='cart-modal'>
         <div className="cart-modal-header">
           <h2 id="cart-modal-title">Carrinho</h2>
           <button data-testid="cart-modal-close" className="cart-modal-close" onClick={onClose}>
@@ -66,13 +66,15 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                         <span className="quantity-label">Quantidade</span>
                         <div className="quantity-controls">
                           <button 
+                            data-testid="decrease-quantity"
                             className="quantity-btn"
                             onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
                           >
                             <FontAwesomeIcon icon={faMinus} />
                           </button>
-                          <span className="quantity-display">{item.quantity}</span>
+                          <span data-testid="quantity-display" className="quantity-display">{item.quantity}</span>
                           <button 
+                            data-testid="increase-quantity"
                             className="quantity-btn"
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           >
@@ -81,6 +83,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                         </div>
                         
                         <button 
+                          data-testid="remove-item"
                           className="remove-btn"
                           title="Remover item"
                           onClick={() => removeItem(item.id)}
@@ -89,7 +92,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                         </button>
                       </div>
                       
-                      <div className="cart-item-price">
+                      <div data-testid="subtotal-display" className="cart-item-price">
                         {formatPrice(item.price * item.quantity)}
                       </div>
                     </div>
@@ -99,7 +102,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
 
               <div className="cart-total">
                 <span className="total-label">Total</span>
-                <span className="total-price">{formatPrice(getTotalPrice())}</span>
+                <span data-testid="total-display" className="total-price">{formatPrice(getTotalPrice())}</span>
               </div>
 
               <button 
