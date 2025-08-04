@@ -48,13 +48,13 @@ function Header() {
               placeholder="O que você está procurando?"
               className="search-input"
               onChange={handleOnChange}/>
-            <button className="search-button" onClick={onClickSearch} >
+            <button data-testid="search-button" className="search-button" onClick={onClickSearch} >
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
  
           <div className="header-actions">
-            <button className="cart-button" onClick={handleOnClickCart}>
+            <button data-testid="cart-button" className="cart-button" onClick={handleOnClickCart}>
               <FontAwesomeIcon icon={faCartShopping} />
             </button>
             <span className='cart-total-items'>

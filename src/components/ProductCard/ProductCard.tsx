@@ -40,6 +40,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
   return (
     /* Div usando role button, pois não pode usar button dentro de button */
     <div
+      data-testid="product-card"
       ref={cardDiv}
       role="button" tabIndex={0}
       onClick={() => onProductClick(product.id)}
@@ -58,7 +59,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
       </div>
       <div className="buy-section">
         <span className="buy-price">{formatPrice(product.price)}</span>
-        <button className="buy-button" onClick={(e) => onBuyClick(product.id, e)}>
+        <button data-testid="buy-button" className="buy-button" onClick={(e) => onBuyClick(product.id, e)}>
           comprar 
           <FontAwesomeIcon icon={faShoppingBag} />
         </button>
