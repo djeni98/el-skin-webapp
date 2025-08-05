@@ -1,10 +1,10 @@
-import './Sobre.css';
 import img1 from '../../assets/img-sobre-1.png';
 import img2 from '../../assets/img-sobre-2.png';
 import img3 from '../../assets/img-sobre-3.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
+import styled from 'styled-components';
 
 function Sobre() {
   const content = [
@@ -24,35 +24,108 @@ function Sobre() {
 
   return (
     <section>
-      <div className="container two-columns">
-        <div className="sobre-content">
-          <h2>Sobre a AL SKIN</h2>
+      <SobreContainer>
+        <Column>
+          <PageTitle>Sobre a AL SKIN</PageTitle>
           { content.map((subsection) => (
             <React.Fragment key={subsection.title}>
-              <p className="subsection-title">{subsection.title}</p>
-              <p className="subsection-description">{subsection.description}</p>
+              <Title>{subsection.title}</Title>
+              <Description>{subsection.description}</Description>
             </React.Fragment>
           ))}
-          <img className="img-left-column" src={img1} alt="Imagem ilustrativa" />
-        </div>
+          <LeftColumnImage src={img1} alt="Imagem ilustrativa" />
+        </Column>
 
-        <div className="vamos-conversar-content">
-          <img className="img-right-column" src={img2} alt="Imagem ilustrativa" />
+        <Column>
+          <RightColumnImage src={img2} alt="Imagem ilustrativa" />
           
-          <p className="subsection-title">Vamos Conversar?</p>
-          <p className="subsection-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+          <Title>
+            Vamos Conversar?
+          </Title>
+          <Description>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
+          </Description>
 
-          <button className='fale-conosco-button'>
+          <FaleConoscoButton>
             <FontAwesomeIcon icon={faMessage} />
             Fale conosco
-          </button>
-        </div>
-      </div>
-      <div className="sobre-img">
+          </FaleConoscoButton>
+        </Column>
+      </SobreContainer>
+
+      <FooterImageContainer>
         <img src={img3} alt="Imagem ilustrativa" />
-      </div>
+      </FooterImageContainer>
     </section>
   );
 }
+
+const SobreContainer = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  display: flex;
+  gap: 32px;
+
+  font-size: 16px;
+  margin-top: 8px;
+  margin-bottom: 3rem;
+`;
+
+const PageTitle = styled.h2`
+  margin-top: 2rem;
+`;
+
+const Column = styled.div`
+  flex: 1;
+`;
+
+const Title = styled.p`
+  text-transform: uppercase;
+  margin-bottom: 0;
+`;
+
+const Description = styled.p`
+  margin-top: 0;
+`;
+
+const LeftColumnImage = styled.img`
+  width: 90%;
+  margin-top: 1rem;
+`;
+
+const RightColumnImage = styled.img`
+  width: 100%;
+  margin-bottom: 3rem;
+`;
+
+const FaleConoscoButton = styled.button`
+  flex-grow: 0;
+  background: #94426E;
+  color: white;
+  padding: 24px 60px;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 3rem;
+`;
+
+const FooterImageContainer = styled.div`
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 export default Sobre;
