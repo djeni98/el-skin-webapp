@@ -1,9 +1,9 @@
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
 import { IProduct, productService } from '../../service/productService';
-import './ProductList.css';
 import { useSearchContext } from '../../context/SearchContext';
 import { useCartContext } from '../../context/CartContext';
+import styled from 'styled-components';
 
 function ProductList() {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -54,9 +54,9 @@ function ProductList() {
   }, [search, products]);
 
   return (
-    <section className="product-list container">
-      <h2 className="product-list-title">nossos queridinhos estão aqui</h2>
-      <div className="product-items">
+    <ProductListSection>
+      <ProductListTitle>nossos queridinhos estão aqui</ProductListTitle>
+      <ProductItems>
         { filteredProducts.map((item) => (
           <ProductCard
             key={item.id}
@@ -65,9 +65,31 @@ function ProductList() {
             onBuyClick={handleBuyClick}
           />
         ))}
-      </div>
-    </section>
+      </ProductItems>
+    </ProductListSection>
   );
 }
+
+const ProductListSection = styled.section`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-direction: column;
+  margin-bottom: 6rem;
+`;
+
+const ProductListTitle = styled.h2`
+  margin: 3rem 0;
+`;
+
+const ProductItems = styled.div`
+  display: flex;
+  gap: 64px;
+  flex-wrap: wrap;
+`;
 
 export default ProductList;
