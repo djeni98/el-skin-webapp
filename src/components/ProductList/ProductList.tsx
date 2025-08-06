@@ -1,15 +1,15 @@
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
 import { IProduct, productService } from '../../service/productService';
-import { useSearchContext } from '../../context/SearchContext';
 import { useCartContext } from '../../context/CartContext';
 import styled from 'styled-components';
+import { useSearch } from '../../hooks/useSearch';
 
 function ProductList() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
-  const { search } = useSearchContext();
+  const { search } = useSearch();
   const { addItem } = useCartContext();
 
   function handleProductClick(productId: string) {
