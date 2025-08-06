@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { ICarouselItem } from '../../service/carroselService';
 import Carrosel from './Carrosel';
-import { title } from 'process';
 
 const mockCarouselItems: ICarouselItem[] = [
   {

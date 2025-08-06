@@ -13,7 +13,7 @@ const product: IProduct = {
   tags: ['tag-test']
 };
 const handleProductClick = jest.fn();
-const handleBuyClick = jest.fn(args => null);
+const handleBuyClick = jest.fn();
 
 test('componente ProductCard deve ser renderizado', () => {
   // Act
