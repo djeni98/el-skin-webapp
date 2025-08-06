@@ -13,8 +13,8 @@ jest.mock('../../context/CartContext', () => ({
 
 let mockSearch = '';
 const mockSetSearch = jest.fn();
-jest.mock('../../context/SearchContext', () => ({
-  useSearchContext: () => ({
+jest.mock('../../hooks/useSearch', () => ({
+  useSearch: () => ({
     search: mockSearch,
     setSearch: mockSetSearch
   }),

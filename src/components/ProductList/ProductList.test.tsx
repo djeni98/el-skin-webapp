@@ -29,8 +29,8 @@ jest.mock('../../service/productService', () => ({
 }));
 
 let mockSearchTerm = '';
-jest.mock('../../context/SearchContext', () => ({
-  useSearchContext: () => ({
+jest.mock('../../hooks/useSearch', () => ({
+  useSearch: () => ({
     search: mockSearchTerm,
   }),
 }));

@@ -13,9 +13,7 @@ function App() {
         <GlobalStyles />
 
         <CartProvider>
-          {/* <SearchProvider> */}
           <AppRouter />
-          {/* </SearchProvider> */}
         </CartProvider>
       </ThemeProvider>
     </Provider>

@@ -15,8 +15,8 @@ jest.mock('../../service/carroselService', () => ({
   },
 }));
 
-jest.mock('../../context/SearchContext', () => ({
-  useSearchContext: () => ({
+jest.mock('../../hooks/useSearch', () => ({
+  useSearch: () => ({
     search: '',
   }),
 }));
