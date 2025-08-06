@@ -33,11 +33,11 @@ function Sobre() {
               <Description>{subsection.description}</Description>
             </React.Fragment>
           ))}
-          <LeftColumnImage src={img1} alt="Imagem ilustrativa" />
+          <LeftColumnImage src={img1} alt='Imagem ilustrativa' />
         </Column>
 
         <Column>
-          <RightColumnImage src={img2} alt="Imagem ilustrativa" />
+          <RightColumnImage src={img2} alt='Imagem ilustrativa' />
           
           <Title>
             Vamos Conversar?
@@ -54,7 +54,7 @@ function Sobre() {
       </SobreContainer>
 
       <FooterImageContainer>
-        <img src={img3} alt="Imagem ilustrativa" />
+        <img src={img3} alt='Imagem ilustrativa' />
       </FooterImageContainer>
     </section>
   );

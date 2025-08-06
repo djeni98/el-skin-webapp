@@ -33,9 +33,9 @@ function ProductCard(props: Readonly<IProductCardProps>) {
   return (
     /* Div usando role button, pois não pode usar button dentro de button */
     <StyledProductCard
-      data-testid="product-card"
+      data-testid='product-card'
       ref={cardDiv}
-      role="button" tabIndex={0}
+      role='button' tabIndex={0}
       onClick={() => onProductClick(product.id)}
       onKeyDown={(e) => handleKeyDownInProduct(e)}
     >
@@ -54,7 +54,7 @@ function ProductCard(props: Readonly<IProductCardProps>) {
       
       <BuySection>
         <ProductPrice>{formatPrice(product.price)}</ProductPrice>
-        <BuyButton data-testid="buy-button" onClick={(e) => onBuyClick(product.id, e)}>
+        <BuyButton data-testid='buy-button' onClick={(e) => onBuyClick(product.id, e)}>
           comprar 
           <FontAwesomeIcon icon={faShoppingBag} />
         </BuyButton>

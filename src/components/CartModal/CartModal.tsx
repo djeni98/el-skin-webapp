@@ -31,15 +31,15 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
       data-testid='cart-modal-overlay'
       onClick={handleBackdropClick}
       onKeyDown={handleBackdropKeyDown}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cart-modal-title"
+      role='dialog'
+      aria-modal='true'
+      aria-labelledby='cart-modal-title'
       tabIndex={-1}
     >
       <CartModalSection data-testid='cart-modal'>
         <CartModalHeader>
-          <h2 id="cart-modal-title">Carrinho</h2>
-          <CloseModalButton data-testid="cart-modal-close" onClick={onClose}>
+          <h2 id='cart-modal-title'>Carrinho</h2>
+          <CloseModalButton data-testid='cart-modal-close' onClick={onClose}>
             <FontAwesomeIcon icon={faTimes} />
           </CloseModalButton>
         </CartModalHeader>
@@ -65,14 +65,14 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                         <QuantityLabel>Quantidade</QuantityLabel>
                         <QuantityControls>
                           <QuantityButton 
-                            data-testid="decrease-quantity"
+                            data-testid='decrease-quantity'
                             onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
                           >
                             <FontAwesomeIcon icon={faMinus} />
                           </QuantityButton>
-                          <QuantityDisplay data-testid="quantity-display">{item.quantity}</QuantityDisplay>
+                          <QuantityDisplay data-testid='quantity-display'>{item.quantity}</QuantityDisplay>
                           <QuantityButton 
-                            data-testid="increase-quantity"
+                            data-testid='increase-quantity'
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           >
                             <FontAwesomeIcon icon={faPlus} />
@@ -80,15 +80,15 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                         </QuantityControls>
                         
                         <RemoveButton 
-                          data-testid="remove-item"
-                          title="Remover item"
+                          data-testid='remove-item'
+                          title='Remover item'
                           onClick={() => removeItem(item.id)}
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </RemoveButton>
                       </CartItemControls>
                       
-                      <CartItemPrice data-testid="subtotal-display">
+                      <CartItemPrice data-testid='subtotal-display'>
                         {formatPrice(item.price * item.quantity)}
                       </CartItemPrice>
                     </CartItemInfo>
@@ -98,7 +98,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
 
               <CartTotal>
                 <TotalLabel>Total</TotalLabel>
-                <TotalPrice data-testid="total-display">{formatPrice(getTotalPrice())}</TotalPrice>
+                <TotalPrice data-testid='total-display'>{formatPrice(getTotalPrice())}</TotalPrice>
               </CartTotal>
 
               <FinalizeBtn>

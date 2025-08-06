@@ -44,16 +44,16 @@ function Header() {
  
           <SearchBar>
             <SearchInput
-              type="text"
-              placeholder="O que você está procurando?"
+              type='text'
+              placeholder='O que você está procurando?'
               onChange={handleOnChange}/>
-            <SearchButton data-testid="search-button" onClick={onClickSearch} >
+            <SearchButton data-testid='search-button' onClick={onClickSearch} >
               <FontAwesomeIcon icon={faSearch} />
             </SearchButton>
           </SearchBar>
  
           <HeaderActions>
-            <CartButton data-testid="cart-button" onClick={handleOnClickCart}>
+            <CartButton data-testid='cart-button' onClick={handleOnClickCart}>
               <FontAwesomeIcon icon={faCartShopping} />
             </CartButton>
             <CartTotalItems>
@@ -72,7 +72,7 @@ function Header() {
           </NavItems>
 
           <div>
-            <PromoLink href="/kits-50-off">Kits 50% off</PromoLink>
+            <PromoLink href='/kits-50-off'>Kits 50% off</PromoLink>
           </div>
         </Container>
       </NavBar>
