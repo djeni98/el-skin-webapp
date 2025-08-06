@@ -1,29 +1,11 @@
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react';
-import { act, ReactNode } from 'react';
+import { act } from 'react';
 import { useSearch } from './useSearch';
-
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import searchReducer from '../store/slices/searchSlice';
-
-const createTestStore = () => configureStore({
-  reducer: {
-    search: searchReducer,
-  },
-});
-
-const createWrapper = (store: ReturnType<typeof createTestStore>) => {
-  const TestWrapper = ({ children }: { children: ReactNode }) => (
-    <Provider store={store}>{children}</Provider>
-  );
-  TestWrapper.displayName = 'TestWrapper';
-  return TestWrapper;
-};
+import { createWrapperWithStore } from '../testHelper';
 
 test('Deve iniciar a busca vazia', () => {
-  const store = createTestStore();
-  const wrapper = createWrapper(store);
+  const { wrapper } = createWrapperWithStore();
   const { result } = renderHook(() => useSearch(), { wrapper });
 
   // Assert
@@ -31,8 +13,7 @@ test('Deve iniciar a busca vazia', () => {
 });
 
 test('Deve atualizar valor da busca ao chamar setSearch', () => {
-  const store = createTestStore();
-  const wrapper = createWrapper(store);
+  const { wrapper } = createWrapperWithStore();
   const { result } = renderHook(() => useSearch(), { wrapper });
 
   const newSearch = 'New search value';

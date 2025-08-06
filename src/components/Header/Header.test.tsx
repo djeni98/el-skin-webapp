@@ -4,8 +4,8 @@ import Header from './Header';
 import { act } from 'react';
 
 const mockGetTotalItems = jest.fn();
-jest.mock('../../context/CartContext', () => ({
-  useCartContext: () => ({
+jest.mock('../../hooks/useCart', () => ({
+  useCart: () => ({
     items: [],
     getTotalItems: mockGetTotalItems
   }),

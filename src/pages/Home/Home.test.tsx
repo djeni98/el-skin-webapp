@@ -21,8 +21,8 @@ jest.mock('../../hooks/useSearch', () => ({
   }),
 }));
 
-jest.mock('../../context/CartContext', () => ({
-  useCartContext: () => ({ }),
+jest.mock('../../hooks/useCart', () => ({
+  useCart: () => ({ }),
 }));
 
 test('página Home deve ser renderizada', async () => {

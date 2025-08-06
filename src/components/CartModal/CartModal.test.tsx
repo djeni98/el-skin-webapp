@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import CartModal from './CartModal';
-import { ICartItem } from '../../hooks/useCart';
+import { ICartItem } from '../../store/slices/cartSlice';
 import { formatPrice } from '../../formatters/price';
 
 const mockOnClose = jest.fn();
@@ -19,8 +19,8 @@ const mockUpdateQuantity = jest.fn();
 const mockRemoveItem = jest.fn();
 const mockGetTotalPrice = jest.fn();
 
-jest.mock('../../context/CartContext', () => ({
-  useCartContext: () => ({
+jest.mock('../../hooks/useCart', () => ({
+  useCart: () => ({
     items: mockItems,
     updateQuantity: mockUpdateQuantity,
     removeItem: mockRemoveItem,
