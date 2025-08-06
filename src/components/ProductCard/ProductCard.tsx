@@ -146,7 +146,7 @@ const ProductPrice = styled.span`
 `;
 
 const BuyButton = styled.button`
-  background-color: #7045F5;
+  background-color: ${props => props.theme.buyButton?.normal};
   color: #fff;
   font-size: 20px;
   font-weight: 700;
@@ -156,7 +156,7 @@ const BuyButton = styled.button`
   border-radius: 8px;
 
   &:hover {
-    background-color: #5433b8;
+    background-color: ${props => props.theme.buyButton?.hover};
   }
 `;
 

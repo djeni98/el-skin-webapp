@@ -135,7 +135,7 @@ const Spacer = styled.div`
 `;
 
 const BuyButton = styled.button`
-  background: #7045F5;
+  background: ${props => props.theme.buyButton?.normal};
   color: white;
   border: none;
   padding: 8px 20px;
@@ -147,7 +147,7 @@ const BuyButton = styled.button`
   gap: 16px;
   
   &:hover {
-    background-color: #5433b8;
+    background-color: ${props => props.theme.buyButton?.hover};
   }
 `;
 
