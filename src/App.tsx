@@ -1,5 +1,4 @@
 import { ThemeProvider } from 'styled-components';
-import { CartProvider } from './context/CartContext';
 import AppRouter from './routes';
 import { GlobalStyles } from './styles/GlobalStyles';
 import { theme } from './styles/theme';
@@ -12,9 +11,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
 
-        <CartProvider>
-          <AppRouter />
-        </CartProvider>
+        <AppRouter />
       </ThemeProvider>
     </Provider>
   );

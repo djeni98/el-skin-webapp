@@ -1,16 +1,16 @@
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
 import { IProduct, productService } from '../../service/productService';
-import { useCartContext } from '../../context/CartContext';
 import styled from 'styled-components';
 import { useSearch } from '../../hooks/useSearch';
+import { useCart } from '../../hooks/useCart';
 
 function ProductList() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const { search } = useSearch();
-  const { addItem } = useCartContext();
+  const { addItem } = useCart();
 
   function handleProductClick(productId: string) {
     console.log(`Clicou no produto ${productId}`);

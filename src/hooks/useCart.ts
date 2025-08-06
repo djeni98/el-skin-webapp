@@ -1,19 +1,11 @@
-import { useCallback, useReducer } from 'react';
-import { ADD_PRODUCT, cartReducer, CLEAR_CART, REMOVE_PRODUCT, UPDATE_QUANTITY } from '../reducers/cartReducer';
-export interface IItem {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-}
-
-export interface ICartItem extends IItem {
-  quantity: number
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback } from 'react';
+import type { RootState, AppDispatch } from '../store';
+import { addItem, removeItem, updateQuantity, clearCart, ICartItem } from '../store/slices/cartSlice';
 
 export interface UseCartReturn {
   items: ICartItem[];
-  addItem: (item: IItem) => void;
+  addItem: (item: Omit<ICartItem, 'quantity'>) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
@@ -22,30 +14,24 @@ export interface UseCartReturn {
 }
 
 export const useCart = (): UseCartReturn => {
-  const [items, dispatch] = useReducer(cartReducer, []);
-  const cartExample = {
-    quantity: 0,
-    id: '',
-    name: '',
-    price: 0,
-    image: ''
-  };
+  const dispatch = useDispatch<AppDispatch>();
+  const items = useSelector((state: RootState) => state.cart.items);
 
-  const addItem = useCallback((newItem: IItem) => {
-    dispatch({ type: ADD_PRODUCT, payload: { ...newItem, quantity: 1 } });
-  }, []);
+  const handleAddItem = useCallback((item: Omit<ICartItem, 'quantity'>) => {
+    dispatch(addItem(item));
+  }, [dispatch]);
 
-  const removeItem = useCallback((id: string) => {
-    dispatch({ type: REMOVE_PRODUCT, payload: { ...cartExample, id } });
-  }, []);
+  const handleRemoveItem = useCallback((id: string) => {
+    dispatch(removeItem({id}));
+  }, [dispatch]);
 
-  const updateQuantity = useCallback((id: string, quantity: number) => {
-    dispatch({ type: UPDATE_QUANTITY, payload: { ...cartExample, id, quantity} });
-  }, []);
+  const handleUpdateQuantity = useCallback((id: string, quantity: number) => {
+    dispatch(updateQuantity({ id, quantity }));
+  }, [dispatch]);
 
-  const clearCart = useCallback(() => {
-    dispatch({ type: CLEAR_CART, payload: { ...cartExample} });
-  }, []);
+  const handleClearCart = useCallback(() => {
+    dispatch(clearCart());
+  }, [dispatch]);
 
   const getTotalItems = useCallback(() => {
     return items.reduce((total, item) => total + item.quantity, 0);
@@ -57,10 +43,10 @@ export const useCart = (): UseCartReturn => {
 
   return {
     items,
-    addItem,
-    removeItem,
-    updateQuantity,
-    clearCart,
+    addItem: handleAddItem,
+    removeItem: handleRemoveItem,
+    updateQuantity: handleUpdateQuantity,
+    clearCart: handleClearCart,
     getTotalItems,
     getTotalPrice,
   };
