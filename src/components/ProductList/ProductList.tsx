@@ -1,12 +1,13 @@
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
-import { IProduct, productService } from '../../service/productService';
+import { IProduct } from '../../service/productService';
 import styled from 'styled-components';
 import { useSearch } from '../../hooks/useSearch';
 import { useCart } from '../../hooks/useCart';
+import { useProducts } from '../../hooks/useProduct';
 
 function ProductList() {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const { products, loading, error, loadProducts } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const { search } = useSearch();
@@ -29,11 +30,6 @@ function ProductList() {
     addItem(produtoComprado);
   }, [products, addItem]);
 
-  async function requestProducts() {
-    const fetchedProducts = await productService.getProducts();
-    setProducts(fetchedProducts);
-  }
-
   function updateFilteredProducts() {
     if (search) {
       setFilteredProducts(products.filter(product =>
@@ -46,8 +42,10 @@ function ProductList() {
   }
 
   useEffect(() => {
-    requestProducts();
-  }, []);
+    if (products.length === 0) {
+      loadProducts();
+    }
+  }, [products.length, loadProducts]);
 
   useEffect(() => {
     updateFilteredProducts();
@@ -57,6 +55,8 @@ function ProductList() {
     <ProductListSection>
       <ProductListTitle>nossos queridinhos estão aqui</ProductListTitle>
       <ProductItems>
+        { loading && <p>Carregando...</p>}
+        { error && <p>{error}</p>}
         { filteredProducts.map((item) => (
           <ProductCard
             key={item.id}
