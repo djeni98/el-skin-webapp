@@ -14,19 +14,17 @@ const mockProducts = [
   }
 ];
 
-jest.mock('../../hooks/useProducts', () => ({
-  useProducts: () => ({
-    products: mockProducts,
-    loading: false,
+jest.mock('../../store/api/apiSlice', () => ({
+  useGetProductsQuery: () => ({
+    data: mockProducts,
+    isLoading: false,
     error: false,
-    loadProducts: () => mockProducts
   }),
-}));
-
-jest.mock('../../service/carroselService', () => ({
-  carouselService: {
-    getCarouselItems: () => [],
-  },
+  useGetCarouselItemsQuery: () => ({
+    data: [],
+    isLoading: false,
+    error: false,
+  })
 }));
 
 jest.mock('../../hooks/useSearch', () => ({

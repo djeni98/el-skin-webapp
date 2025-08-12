@@ -24,15 +24,14 @@ const mockProducts = [
 
 const mockLoading = false;
 const mockError = false;
-const mockLoadProducts = jest.fn();
-jest.mock('../../hooks/useProducts', () => ({
-  useProducts: () => ({
-    products: mockProducts,
-    loading: mockLoading,
+jest.mock('../../store/api/apiSlice', () => ({
+  useGetProductsQuery: () => ({
+    data: mockProducts,
+    isLoading: mockLoading,
     error: mockError,
-    loadProducts: mockLoadProducts
   }),
 }));
+
 
 let mockSearchTerm = '';
 jest.mock('../../hooks/useSearch', () => ({

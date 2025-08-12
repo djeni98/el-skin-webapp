@@ -66,7 +66,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "axios": "axios/dist/axios.min.js"
+      "axios": "axios/dist/axios.min.js",
+      "@reduxjs/toolkit/query/react": "@reduxjs/toolkit/dist/query/react/rtk-query-react.legacy-esm.js"
     }
   }
 }
