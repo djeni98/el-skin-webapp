@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react';
 import { useCart } from './useCart';
 import { act } from 'react';
+import { createWrapperWithStore } from '../testHelper';
 
 const newItem = {
   id: '1',
@@ -10,7 +11,8 @@ const newItem = {
 };
 
 test('Deve iniciar o carrinho vazio', () => {
-  const { result } = renderHook(() => useCart());
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
 
   // Assert
   expect(result.current.items).toEqual([]);
@@ -19,7 +21,8 @@ test('Deve iniciar o carrinho vazio', () => {
 });
 
 test('Deve adicionar um item no carrinho ao chamar addItem', () => {
-  const { result } = renderHook(() => useCart());
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
 
   act(() => result.current.addItem(newItem));
 
@@ -29,7 +32,8 @@ test('Deve adicionar um item no carrinho ao chamar addItem', () => {
 });
 
 test('Deve aumentar quantidade de um item no carrinho ao chamar addItem', () => {
-  const { result } = renderHook(() => useCart());
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
 
   act(() => result.current.addItem(newItem));
   act(() => result.current.addItem(newItem));
@@ -40,7 +44,8 @@ test('Deve aumentar quantidade de um item no carrinho ao chamar addItem', () => 
 });
 
 test('Deve remover item do carrinho ao chamar removeItem', () => {
-  const { result } = renderHook(() => useCart());
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
 
   act(() => result.current.addItem(newItem));
   act(() => result.current.addItem(newItem));
@@ -52,7 +57,8 @@ test('Deve remover item do carrinho ao chamar removeItem', () => {
 });
 
 test('Deve alterar quantidade de um item no carrinho ao chamar updateQuantity', () => {
-  const { result } = renderHook(() => useCart());
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
 
   act(() => result.current.addItem(newItem));
   act(() => result.current.updateQuantity(newItem.id, 10));
@@ -62,8 +68,21 @@ test('Deve alterar quantidade de um item no carrinho ao chamar updateQuantity', 
   expect(result.current.getTotalPrice()).toBe(newItem.price * 10);
 });
 
+test('Deve remover item do carrinho ao chamar updateQuantity com quantidade igual ou inferior a zero', () => {
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
+
+  act(() => result.current.addItem(newItem));
+  act(() => result.current.updateQuantity(newItem.id, 0));
+
+  expect(result.current.items).toHaveLength(0);
+  expect(result.current.getTotalItems()).toBe(0);
+  expect(result.current.getTotalPrice()).toBe(0);
+});
+
 test('Deve limpar carrinho ao chamar clearCart', () => {
-  const { result } = renderHook(() => useCart());
+  const { wrapper } = createWrapperWithStore();
+  const { result } = renderHook(() => useCart(), { wrapper });
 
   act(() => result.current.addItem(newItem));
   act(() => result.current.clearCart());

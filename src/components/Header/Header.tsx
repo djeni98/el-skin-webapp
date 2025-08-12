@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { useSearchContext } from '../../context/SearchContext';
 import CartModal from '../CartModal/CartModal';
-import { useCartContext } from '../../context/CartContext';
 import styled from 'styled-components';
+import { useSearch } from '../../hooks/useSearch';
+import { useCart } from '../../hooks/useCart';
  
 function Header() {
   const navLinks = [
@@ -14,8 +14,8 @@ function Header() {
     { name: 'Ingredientes', href: '/ingredientes' },
   ];
 
-  const { getTotalItems } = useCartContext();
-  const { search, setSearch } = useSearchContext();
+  const { getTotalItems } = useCart();
+  const { search, setSearch } = useSearch();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   
   const handleCloseCart = () => {

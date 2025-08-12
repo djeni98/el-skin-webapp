@@ -1,16 +1,16 @@
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
-import { IProduct, productService } from '../../service/productService';
-import { useSearchContext } from '../../context/SearchContext';
-import { useCartContext } from '../../context/CartContext';
 import styled from 'styled-components';
+import { useSearch } from '../../hooks/useSearch';
+import { useCart } from '../../hooks/useCart';
+import { useGetProductsQuery, IProduct } from '../../store/api/apiSlice';
 
 function ProductList() {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const { data: products = [], isLoading: loading, error } = useGetProductsQuery();
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
-  const { search } = useSearchContext();
-  const { addItem } = useCartContext();
+  const { search } = useSearch();
+  const { addItem } = useCart();
 
   function handleProductClick(productId: string) {
     console.log(`Clicou no produto ${productId}`);
@@ -29,11 +29,6 @@ function ProductList() {
     addItem(produtoComprado);
   }, [products, addItem]);
 
-  async function requestProducts() {
-    const fetchedProducts = await productService.getProducts();
-    setProducts(fetchedProducts);
-  }
-
   function updateFilteredProducts() {
     if (search) {
       setFilteredProducts(products.filter(product =>
@@ -46,26 +41,29 @@ function ProductList() {
   }
 
   useEffect(() => {
-    requestProducts();
-  }, []);
-
-  useEffect(() => {
     updateFilteredProducts();
   }, [search, products]);
 
   return (
     <ProductListSection>
       <ProductListTitle>nossos queridinhos estão aqui</ProductListTitle>
-      <ProductItems>
-        { filteredProducts.map((item) => (
-          <ProductCard
-            key={item.id}
-            product={item}
-            onProductClick={handleProductClick}
-            onBuyClick={handleBuyClick}
-          />
-        ))}
-      </ProductItems>
+      { loading && <p>Carregando...</p>}
+      { error && <p>Erro ao carregar produtos: {JSON.stringify(error)}</p>}
+
+      { !loading && !error && (
+        <ProductItems>
+          { filteredProducts.map((item) => (
+            <ProductCard
+              key={item.id}
+              product={item}
+              onProductClick={handleProductClick}
+              onBuyClick={handleBuyClick}
+            />
+          ))}
+
+          { filteredProducts.length === 0 && <p>Sem produtos</p>}
+        </ProductItems>
+      )}
     </ProductListSection>
   );
 }

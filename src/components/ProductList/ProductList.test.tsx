@@ -22,22 +22,27 @@ const mockProducts = [
   }
 ];
 
-jest.mock('../../service/productService', () => ({
-  productService: {
-    getProducts: () => mockProducts,
-  },
+const mockLoading = false;
+const mockError = false;
+jest.mock('../../store/api/apiSlice', () => ({
+  useGetProductsQuery: () => ({
+    data: mockProducts,
+    isLoading: mockLoading,
+    error: mockError,
+  }),
 }));
 
+
 let mockSearchTerm = '';
-jest.mock('../../context/SearchContext', () => ({
-  useSearchContext: () => ({
+jest.mock('../../hooks/useSearch', () => ({
+  useSearch: () => ({
     search: mockSearchTerm,
   }),
 }));
 
 const mockAddItem = jest.fn();
-jest.mock('../../context/CartContext', () => ({
-  useCartContext: () => ({
+jest.mock('../../hooks/useCart', () => ({
+  useCart: () => ({
     addItem: mockAddItem
   }),
 }));

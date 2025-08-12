@@ -4,8 +4,8 @@ import Header from './Header';
 import { act } from 'react';
 
 const mockGetTotalItems = jest.fn();
-jest.mock('../../context/CartContext', () => ({
-  useCartContext: () => ({
+jest.mock('../../hooks/useCart', () => ({
+  useCart: () => ({
     items: [],
     getTotalItems: mockGetTotalItems
   }),
@@ -13,8 +13,8 @@ jest.mock('../../context/CartContext', () => ({
 
 let mockSearch = '';
 const mockSetSearch = jest.fn();
-jest.mock('../../context/SearchContext', () => ({
-  useSearchContext: () => ({
+jest.mock('../../hooks/useSearch', () => ({
+  useSearch: () => ({
     search: mockSearch,
     setSearch: mockSetSearch
   }),
