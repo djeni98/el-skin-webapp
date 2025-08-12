@@ -1,19 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { carouselService } from '../../service/carroselService';
 import styled from 'styled-components';
+import { useGetCarouselItemsQuery } from '../../store/api/apiSlice';
 
-interface ICarouselItem {
-  subtitle: string;
-  title: string;
-  description: string;
-  backgroundImage: string;
-  textPosition: 'left' | 'right';
-}
 
 function Carrosel() {
-  const [items, setItems] = useState<ICarouselItem[]>([]);
+  const { data: items = [], isLoading, error } = useGetCarouselItemsQuery();
   const [idxItemAtual, setIdxItemAtual] = useState(0);
 
   function previousItem() {
@@ -22,11 +15,6 @@ function Carrosel() {
 
   function nextItem() {
     setIdxItemAtual((prevIdx) => (prevIdx === items.length - 1 ? 0 : prevIdx + 1));
-  }
-
-  async function requestCarroselItems() {
-    const newItems = await carouselService.getCarouselItems();
-    setItems(newItems);
   }
 
   function getStyleForImgCarrosel(img: string) {
@@ -39,15 +27,13 @@ function Carrosel() {
     return () => { clearInterval(timer); };
   }, [items]);
 
-  useEffect(() => {
-    requestCarroselItems();
-  }, []);
-
   const item = items.length > 0 ? items[idxItemAtual] : null;
 
   return (
     <>
-      {item &&
+      { isLoading && <p>Carregando...</p> }
+      { error && <p>Ocorreu um erro: {JSON.stringify(error)}</p> }
+      { item &&
         <CarroselBackgroundContainer style={getStyleForImgCarrosel(item.backgroundImage)}>
           <CarroselContainer>
             <CarroselButton onClick={previousItem} data-testid='previous-item'>

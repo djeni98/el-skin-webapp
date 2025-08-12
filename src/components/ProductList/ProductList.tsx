@@ -1,13 +1,12 @@
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
-import { IProduct } from '../../service/productService';
 import styled from 'styled-components';
 import { useSearch } from '../../hooks/useSearch';
 import { useCart } from '../../hooks/useCart';
-import { useProducts } from '../../hooks/useProducts';
+import { useGetProductsQuery, IProduct } from '../../store/api/apiSlice';
 
 function ProductList() {
-  const { products, loading, error, loadProducts } = useProducts();
+  const { data: products = [], isLoading: loading, error } = useGetProductsQuery();
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const { search } = useSearch();
@@ -42,30 +41,29 @@ function ProductList() {
   }
 
   useEffect(() => {
-    if (products.length === 0) {
-      loadProducts();
-    }
-  }, [products.length, loadProducts]);
-
-  useEffect(() => {
     updateFilteredProducts();
   }, [search, products]);
 
   return (
     <ProductListSection>
       <ProductListTitle>nossos queridinhos estão aqui</ProductListTitle>
-      <ProductItems>
-        { loading && <p>Carregando...</p>}
-        { error && <p>{error}</p>}
-        { filteredProducts.map((item) => (
-          <ProductCard
-            key={item.id}
-            product={item}
-            onProductClick={handleProductClick}
-            onBuyClick={handleBuyClick}
-          />
-        ))}
-      </ProductItems>
+      { loading && <p>Carregando...</p>}
+      { error && <p>Erro ao carregar produtos: {JSON.stringify(error)}</p>}
+
+      { !loading && !error && (
+        <ProductItems>
+          { filteredProducts.map((item) => (
+            <ProductCard
+              key={item.id}
+              product={item}
+              onProductClick={handleProductClick}
+              onBuyClick={handleBuyClick}
+            />
+          ))}
+
+          { filteredProducts.length === 0 && <p>Sem produtos</p>}
+        </ProductItems>
+      )}
     </ProductListSection>
   );
 }
