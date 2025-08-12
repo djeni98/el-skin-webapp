@@ -3,10 +3,24 @@ import '@testing-library/jest-dom';
 import Home from './Home';
 import { act } from 'react';
 
-jest.mock('../../service/productService', () => ({
-  productService: {
-    getProducts: () => [],
-  },
+const mockProducts = [
+  {
+    id: '1',
+    name: 'Produto 1',
+    description: 'Descrição do produto 1',
+    price: 99.99,
+    image: '/image1.jpg',
+    tags: ['protection']
+  }
+];
+
+jest.mock('../../hooks/useProducts', () => ({
+  useProducts: () => ({
+    products: mockProducts,
+    loading: false,
+    error: false,
+    loadProducts: () => mockProducts
+  }),
 }));
 
 jest.mock('../../service/carroselService', () => ({

@@ -22,10 +22,16 @@ const mockProducts = [
   }
 ];
 
-jest.mock('../../service/productService', () => ({
-  productService: {
-    getProducts: () => mockProducts,
-  },
+const mockLoading = false;
+const mockError = false;
+const mockLoadProducts = jest.fn();
+jest.mock('../../hooks/useProducts', () => ({
+  useProducts: () => ({
+    products: mockProducts,
+    loading: mockLoading,
+    error: mockError,
+    loadProducts: mockLoadProducts
+  }),
 }));
 
 let mockSearchTerm = '';

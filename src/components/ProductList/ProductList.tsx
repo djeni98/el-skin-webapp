@@ -4,7 +4,7 @@ import { IProduct } from '../../service/productService';
 import styled from 'styled-components';
 import { useSearch } from '../../hooks/useSearch';
 import { useCart } from '../../hooks/useCart';
-import { useProducts } from '../../hooks/useProduct';
+import { useProducts } from '../../hooks/useProducts';
 
 function ProductList() {
   const { products, loading, error, loadProducts } = useProducts();
