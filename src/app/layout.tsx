@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import '../index.css';
+import 'normalize.css';
  
 export const metadata: Metadata = {
   title: 'React App',
