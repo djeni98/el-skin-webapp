@@ -47,13 +47,13 @@ function Header() {
               type='text'
               placeholder='O que você está procurando?'
               onChange={handleOnChange}/>
-            <SearchButton data-testid='search-button' onClick={onClickSearch} >
+            <SearchButton data-testid='search-button' onClick={onClickSearch} aria-label='Pesquisar'>
               <FontAwesomeIcon icon={faSearch} />
             </SearchButton>
           </SearchBar>
  
           <HeaderActions>
-            <CartButton data-testid='cart-button' onClick={handleOnClickCart}>
+            <CartButton data-testid='cart-button' onClick={handleOnClickCart} aria-label="Abrir Carrinho">
               <FontAwesomeIcon icon={faCartShopping} />
             </CartButton>
             <CartTotalItems>
