@@ -39,7 +39,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
       <CartModalSection data-testid='cart-modal'>
         <CartModalHeader>
           <h2 id='cart-modal-title'>Carrinho</h2>
-          <CloseModalButton data-testid='cart-modal-close' onClick={onClose}>
+          <CloseModalButton data-testid='cart-modal-close' onClick={onClose} aria-label='Fechar modal do carrinho'>
             <FontAwesomeIcon icon={faTimes} />
           </CloseModalButton>
         </CartModalHeader>
@@ -67,6 +67,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                           <QuantityButton 
                             data-testid='decrease-quantity'
                             onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                            aria-label="Diminuir quantidade do item"
                           >
                             <FontAwesomeIcon icon={faMinus} />
                           </QuantityButton>
@@ -74,6 +75,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                           <QuantityButton 
                             data-testid='increase-quantity'
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            aria-label="Aumentar quantidade do item"
                           >
                             <FontAwesomeIcon icon={faPlus} />
                           </QuantityButton>
@@ -83,6 +85,7 @@ function CartModal({ isOpen, onClose }: Readonly<CartModalProps>) {
                           data-testid='remove-item'
                           title='Remover item'
                           onClick={() => removeItem(item.id)}
+                          aria-label="Remover item"
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </RemoveButton>

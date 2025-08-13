@@ -36,7 +36,7 @@ function Carrosel() {
       { item &&
         <CarroselBackgroundContainer style={getStyleForImgCarrosel(item.backgroundImage)}>
           <CarroselContainer>
-            <CarroselButton onClick={previousItem} data-testid='previous-item'>
+            <CarroselButton onClick={previousItem} data-testid='previous-item' aria-label='Item anterior do carrosel'>
               <FontAwesomeIcon icon={faArrowLeft} />
             </CarroselButton>
 
@@ -54,7 +54,7 @@ function Carrosel() {
 
             {item.textPosition === 'left' && <Spacer />}
 
-            <CarroselButton data-testid='next-item' onClick={nextItem}>
+            <CarroselButton data-testid='next-item' onClick={nextItem} aria-label='Próximo item do carrosel'>
               <FontAwesomeIcon icon={faArrowRight} />
             </CarroselButton>
           </CarroselContainer>
