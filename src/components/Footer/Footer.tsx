@@ -1,6 +1,7 @@
 import { faFacebook, faInstagram, faLinkedin, faPinterest, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './styles.module.css';
+import Link from 'next/link';
 
 function Footer() {
   const socialMediaList = [
@@ -16,7 +17,7 @@ function Footer() {
     { 
       groupTitle: 'Sobre a AL SKIN', 
       links: [
-        { name: 'quem somos', href: '/quem-somos' },
+        { name: 'quem somos', href: '/about' },
         { name: 'time AL SKIN', href: '/time' },
         { name: 'carreiras', href: '/carreiras' }
       ]
@@ -58,7 +59,7 @@ function Footer() {
             <div className={styles.link_column_group} key={groupLink.groupTitle}>
               <span className={styles.group_title}>{groupLink.groupTitle}</span>
               { groupLink.links.map((link) => (
-                <a className={styles.link_item} href={link.href} key={link.href}>- {link.name}</a>
+                <Link className={styles.link_item} href={link.href} key={link.href}>- {link.name}</Link>
               ))}
             </div>
           ))}

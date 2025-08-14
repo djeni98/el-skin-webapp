@@ -7,6 +7,7 @@ import CartModal from '../CartModal/CartModal';
 import { useSearch } from '../../hooks/useSearch';
 import { useCart } from '../../hooks/useCart';
 import styles from './styles.module.css';
+import Link from 'next/link';
  
 function Header() {
   const navLinks = [
@@ -69,12 +70,12 @@ function Header() {
         <div className={styles.container}>
           <div className={styles.nav_items}>
             { navLinks.map((navLink) => (
-              <a className={styles.nav_item} href={navLink.href} key={navLink.href} >{navLink.name}</a>
+              <Link className={styles.nav_item} href={navLink.href} key={navLink.href} >{navLink.name}</Link>
             ))}
           </div>
 
           <div>
-            <a className={styles.promo_link} href='/kits-50-off'>Kits 50% off</a>
+            <Link className={styles.promo_link} href='/kits-50-off'>Kits 50% off</Link>
           </div>
         </div>
       </nav>
