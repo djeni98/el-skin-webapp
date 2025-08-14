@@ -1,0 +1,28 @@
+.not_found_section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
+
+.back_home_link {
+  background: #94426E;
+  color: white;
+  padding: 24px 60px;
+  border-radius: 8px;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 3rem;
+  text-decoration: none;
+}
+
+.back_home_link:hover {
+  background: #662e4c;
+}
