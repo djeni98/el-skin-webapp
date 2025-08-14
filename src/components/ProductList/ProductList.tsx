@@ -1,9 +1,11 @@
+'use client';
+
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useSearch } from '../../hooks/useSearch';
 import { useCart } from '../../hooks/useCart';
 import { useGetProductsQuery, IProduct } from '../../store/api/apiSlice';
+import styles from './styles.module.css';
 
 function ProductList() {
   const { data: products = [], isLoading: loading, error } = useGetProductsQuery();
@@ -45,13 +47,13 @@ function ProductList() {
   }, [search, products]);
 
   return (
-    <ProductListSection>
-      <ProductListTitle>nossos queridinhos estão aqui</ProductListTitle>
+    <section className={styles.product_list_section}>
+      <h2 className={styles.product_list_title}>nossos queridinhos estão aqui</h2>
       { loading && <p>Carregando...</p>}
       { error && <p>Erro ao carregar produtos: {JSON.stringify(error)}</p>}
 
       { !loading && !error && (
-        <ProductItems>
+        <div className={styles.product_items}>
           { filteredProducts.map((item) => (
             <ProductCard
               key={item.id}
@@ -62,32 +64,10 @@ function ProductList() {
           ))}
 
           { filteredProducts.length === 0 && <p>Sem produtos</p>}
-        </ProductItems>
+        </div>
       )}
-    </ProductListSection>
+    </section>
   );
 }
-
-const ProductListSection = styled.section`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  flex-direction: column;
-  margin-bottom: 6rem;
-`;
-
-const ProductListTitle = styled.h2`
-  margin: 3rem 0;
-`;
-
-const ProductItems = styled.div`
-  display: flex;
-  gap: 64px;
-  flex-wrap: wrap;
-`;
 
 export default ProductList;
