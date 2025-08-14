@@ -1,3 +1,13 @@
+import Carrosel from '../components/Carrosel/Carrosel';
+import ProductList from '../components/ProductList/ProductList';
+import PromoBanner from '../components/PromoBanner/PromoBanner';
+
 export default function Home() {
-  return <h1>Minha nova home!</h1>;
+  return (
+    <>
+      <PromoBanner />
+      <Carrosel />
+      <ProductList />
+    </>
+  );
 }
