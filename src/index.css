@@ -17,3 +17,11 @@ button {
   background: none;
   cursor: pointer;
 }
+
+.buy_button_theme {
+  background-color: #7045F5;
+}
+
+.buy_button_theme:hover {
+  background-color: #5433b8;
+}
