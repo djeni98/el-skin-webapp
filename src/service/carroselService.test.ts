@@ -1,5 +1,5 @@
 import { API_CONFIG } from '../config/APIConfig';
-import api from './api';
+import apiFetch from './apiFetch';
 import { carouselService, ICarouselItem } from './carroselService';
 
 const mockCarouselItems: ICarouselItem[] = [
@@ -19,19 +19,20 @@ const mockCarouselItems: ICarouselItem[] = [
   },
 ];
 
-jest.mock('./api', () => ({
+jest.mock('./apiFetch', () => ({
   get: jest.fn(),
 }));
 
-const mockApi = api as jest.Mocked<typeof api>;
+const mockApi = apiFetch as jest.Mocked<typeof apiFetch>;
 
 test('getCarouselItems', async () => {
-  mockApi.get.mockResolvedValue({ data: mockCarouselItems });
+  const mockedValue = { data: mockCarouselItems };
+  mockApi.get.mockResolvedValue(mockedValue);
 
   // act
   const result = await carouselService.getCarouselItems();
 
   // assert
   expect(mockApi.get).toHaveBeenCalledWith(API_CONFIG.ENDPOINTS.CAROUSEL);
-  expect(result).toEqual(mockCarouselItems);
+  expect(result).toEqual(mockedValue);
 });
