@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import styles from './styles.module.css';
+import Image from 'next/image';
 
 
 export default function Sobre() {
@@ -34,11 +35,11 @@ export default function Sobre() {
               <p className={styles.description}>{subsection.description}</p>
             </React.Fragment>
           ))}
-          <img className={styles.left_column_image} src={img1} alt='Imagem ilustrativa' />
+          <Image className={styles.left_column_image} src={img1} width={500} height={750} alt='Imagem ilustrativa' />
         </div>
 
         <div className={styles.column}>
-          <img className={styles.right_column_image} src={img2} alt='Imagem ilustrativa' />
+          <Image className={styles.right_column_image} src={img2} width={572} height={858} alt='Imagem ilustrativa' />
           
           <p className={styles.title}>
             Vamos Conversar?
@@ -55,7 +56,7 @@ export default function Sobre() {
       </div>
 
       <div className={styles.footer_image_container}>
-        <img src={img3} alt='Imagem ilustrativa' />
+        <Image src={img3} width={1440} height={1053} alt='Imagem ilustrativa' />
       </div>
     </section>
   );
