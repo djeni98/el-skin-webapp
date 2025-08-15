@@ -3,12 +3,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { useGetCarouselItemsQuery } from '../../store/api/apiSlice';
 import styles from './styles.module.css';
+import { ICarouselItem } from '../../service/carroselService';
 
 
-function Carrosel() {
-  const { data: items = [], isLoading, error } = useGetCarouselItemsQuery();
+function Carrosel({ items }: Readonly<{ items: ICarouselItem[]}>) {
   const [idxItemAtual, setIdxItemAtual] = useState(0);
 
   function previousItem() {
@@ -33,8 +32,6 @@ function Carrosel() {
 
   return (
     <>
-      { isLoading && <p>Carregando...</p> }
-      { error && <p>Ocorreu um erro: {JSON.stringify(error)}</p> }
       { item &&
         <div className={styles.carrosel_background_container} style={getStyleForImgCarrosel(item.backgroundImage)}>
           <div className={styles.carrosel_container}>
