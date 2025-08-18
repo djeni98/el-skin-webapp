@@ -4,11 +4,10 @@ import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useState } from 'react';
 import { useSearch } from '../../hooks/useSearch';
 import { useCart } from '../../hooks/useCart';
-import { useGetProductsQuery, IProduct } from '../../store/api/apiSlice';
 import styles from './styles.module.css';
+import { IProduct } from '../../service/productService';
 
-function ProductList() {
-  const { data: products = [], isLoading: loading, error } = useGetProductsQuery();
+function ProductList({ products }: Readonly<{ products: IProduct[]}>) {
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const { search } = useSearch();
@@ -44,15 +43,12 @@ function ProductList() {
 
   useEffect(() => {
     updateFilteredProducts();
-  }, [search, products]);
+  }, [search]);
 
   return (
     <section className={styles.product_list_section}>
       <h2 className={styles.product_list_title}>nossos queridinhos estão aqui</h2>
-      { loading && <p>Carregando...</p>}
-      { error && <p>Erro ao carregar produtos: {JSON.stringify(error)}</p>}
-
-      { !loading && !error && (
+      {(
         <div className={styles.product_items}>
           { filteredProducts.map((item) => (
             <ProductCard

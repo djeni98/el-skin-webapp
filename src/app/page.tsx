@@ -1,5 +1,5 @@
 import LoadCarrosel from '../components/Carrosel/LoadCarrosel';
-import ProductList from '../components/ProductList/ProductList';
+import LoadProductList from '../components/ProductList/LoadProductList';
 import PromoBanner from '../components/PromoBanner/PromoBanner';
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <PromoBanner />
       <LoadCarrosel />
-      <ProductList />
+      <LoadProductList />
     </>
   );
 }
