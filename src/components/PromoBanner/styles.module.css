@@ -1,0 +1,33 @@
+
+
+.banner {
+  background-color: #DC995E;
+  padding: 0.5rem;
+}
+
+.banner_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+
+  justify-content: left;
+  gap: 3rem;
+}
+
+.title {
+  font-weight: 700;
+  color: #fff;
+}
+
+.bold_font {
+  font-weight: 700;
+}
+
+.codigo_promo {
+  padding: 2px 16px;
+  background-color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
+}

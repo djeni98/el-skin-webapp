@@ -1,0 +1,137 @@
+
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header_top {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.search_bar {
+  flex: 2;
+  max-width: 400px;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.search_input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+
+}
+
+.search_input:focus {
+  border-color: #007bff;
+}
+
+.search_input::placeholder {
+  color: #999;
+}
+
+.search_button {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5rem;
+  border-radius: 50%;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.search_button:hover {
+  background-color: #f0f0f0;
+}
+
+.header_actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.cart_button {
+  padding: 1rem;
+  border-radius: 50%;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+
+}
+
+.cart_button:hover {
+  background-color: #f0f0f0;
+}
+
+.cart_total_items {
+  position: absolute;
+  top: -8px;
+  right: -16px;
+  font-weight: 900;
+  color:#e2454d; 
+  padding: 0px 8px 2px 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #e2454d;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav_bar {
+  padding: 8px 0px;
+}
+
+.nav_items {
+  display: flex;
+  flex: 1;
+  gap: 5rem;
+}
+
+.nav_item {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+
+}
+
+.nav_item:hover {
+  text-decoration: underline;
+}
+
+.promo_link {
+  text-decoration: none;
+  color: #e2454d;
+  font-weight: 700;
+
+}
+
+.promo_link:hover {
+  text-decoration: underline;
+}

@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Sobre from './Sobre';
+import About from './page';
 
+// Next/image error using relative path '../..'
+// Turbopack error using absotue path '/public'
 test('tela Sobre deve ser renderizada', () => {
-  render(<Sobre />);
+  render(<About />);
 
   const titulo = /sobre a AL SKIN/i;
   const subtitulos = [

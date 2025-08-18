@@ -27,19 +27,10 @@ const mockCarouselItems: ICarouselItem[] = [
   },
 ];
 
-
-jest.mock('../../store/api/apiSlice', () => ({
-  useGetCarouselItemsQuery: () => ({
-    data: mockCarouselItems,
-    isLoading: false,
-    error: false,
-  })
-}));
-
 const renderWithAct = async () => {
   let component;
   await act(async () => {
-    component = render(<Carrosel />);
+    component = render(<Carrosel items={mockCarouselItems}/>);
   });
   return component;
 };

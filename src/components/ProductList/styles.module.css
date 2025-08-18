@@ -1,0 +1,21 @@
+.product_list_section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  flex-direction: column;
+  margin-bottom: 6rem;
+}
+
+.product_list_title {
+  margin: 3rem 0;
+}
+
+.product_items {
+  display: flex;
+  gap: 64px;
+  flex-wrap: wrap;
+}

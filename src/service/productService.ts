@@ -1,5 +1,5 @@
 import { API_CONFIG } from '../config/APIConfig';
-import api from './api';
+import apiFetch from './apiFetch';
  
 export interface IProduct {
   id: string;
@@ -11,13 +11,11 @@ export interface IProduct {
 }
  
 export const productService = {
-  async getProducts(): Promise<IProduct[]> {
-    const response = await api.get<IProduct[]>(API_CONFIG.ENDPOINTS.PRODUCTS);
-    return response.data;
+  async getProducts() {
+    return await apiFetch.get<IProduct[]>(API_CONFIG.ENDPOINTS.PRODUCTS);
   },
  
-  async getProductById(id: string): Promise<IProduct> {
-    const response = await api.get<IProduct>(`${API_CONFIG.ENDPOINTS.PRODUCTS}/${id}`);
-    return response.data;
+  async getProductById(id: string) {
+    return await apiFetch.get<IProduct>(`${API_CONFIG.ENDPOINTS.PRODUCTS}/${id}`);
   },
 };

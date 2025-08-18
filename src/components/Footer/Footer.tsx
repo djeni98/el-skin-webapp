@@ -1,6 +1,7 @@
 import { faFacebook, faInstagram, faLinkedin, faPinterest, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styled from 'styled-components';
+import styles from './styles.module.css';
+import Link from 'next/link';
 
 function Footer() {
   const socialMediaList = [
@@ -16,7 +17,7 @@ function Footer() {
     { 
       groupTitle: 'Sobre a AL SKIN', 
       links: [
-        { name: 'quem somos', href: '/quem-somos' },
+        { name: 'quem somos', href: '/about' },
         { name: 'time AL SKIN', href: '/time' },
         { name: 'carreiras', href: '/carreiras' }
       ]
@@ -46,99 +47,32 @@ function Footer() {
 
   return (
     <footer>
-      <FooterTopSection>
-        <SocialMedia>
+      <div className={styles.footer_top_section}>
+        <div className={styles.social_media}>
           { socialMediaList.map((item) => (
-            <SocialMediaItem href={item.href} key={item.name}><FontAwesomeIcon icon={item.icon} /></SocialMediaItem>
+            <a className={styles.social_media_item} href={item.href} key={item.name}><FontAwesomeIcon icon={item.icon} /></a>
           ))}
-        </SocialMedia>
+        </div>
 
-        <Links>
+        <div className={styles.links}>
           { groupLinks.map((groupLink) => (
-            <LinkColumnGroup key={groupLink.groupTitle}>
-              <GroupTitle>{groupLink.groupTitle}</GroupTitle>
+            <div className={styles.link_column_group} key={groupLink.groupTitle}>
+              <span className={styles.group_title}>{groupLink.groupTitle}</span>
               { groupLink.links.map((link) => (
-                <LinkItem href={link.href} key={link.href}>- {link.name}</LinkItem>
+                <Link className={styles.link_item} href={link.href} key={link.href}>- {link.name}</Link>
               ))}
-            </LinkColumnGroup>
+            </div>
           ))}
-        </Links>
-      </FooterTopSection>
+        </div>
+      </div>
 
-      <FooterBottomSection>
-        <LogoFooter>AL SKIN</LogoFooter>
+      <div className={styles.footer_bottom_section}>
+        <span className={styles.logo_footer}>AL SKIN</span>
         <span>2023 AL SKIN. Todos os direitos reservados.</span>
         <span>Av. Sete de Setembro, 467 - São Paulo/SP  - CEP: 05324-980.</span>
-      </FooterBottomSection>
+      </div>
     </footer>
   );
 }
-
-const FooterTopSection = styled.div`
-  padding: 5rem 3rem;
-  background-color: #F5F5F5;
-`;
-
-const SocialMedia = styled.div`
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-`;
-
-const SocialMediaItem = styled.a`
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  color: #fff;
-  background-color: #6F6E6E;
-
-  &:hover {
-    background-color: #999696;
-  }
-`;
-
-const Links = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 6rem;
-  margin-top: 5rem;
-`;
-
-const LinkColumnGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 6px;
-`;
-
-const GroupTitle = styled.span`
-  font-size: 16px;
-  text-decoration: underline;
-`;
-
-const LinkItem = styled.a`
-  text-decoration: none;
-  color: #878787;
-`;
-
-
-const FooterBottomSection = styled.div`
-  background-color: #222222;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  padding: 5rem 3rem;
-  color: #fff;
-`;
-
-const LogoFooter = styled.span`
-  font-size: 24px;
-  font-weight: bold;
-`;
 
 export default Footer;

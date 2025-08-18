@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import NotFound from './NotFound';
+import NotFound from './page';
 
 test('tela NotFound deve ser renderizada', () => {
   render(<NotFound />);

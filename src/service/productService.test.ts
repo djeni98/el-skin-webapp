@@ -1,5 +1,5 @@
 import { API_CONFIG } from '../config/APIConfig';
-import api from './api';
+import apiFetch from './apiFetch';
 import { IProduct, productService } from './productService';
 
 const mockProducts: IProduct[] = [
@@ -21,31 +21,33 @@ const mockProducts: IProduct[] = [
   }
 ];
 
-jest.mock('./api', () => ({
+jest.mock('./apiFetch', () => ({
   get: jest.fn(),
 }));
 
-const mockApi = api as jest.Mocked<typeof api>;
+const mockApi = apiFetch as jest.Mocked<typeof apiFetch>;
 
 test('getProducts', async () => {
-  mockApi.get.mockResolvedValue({ data: mockProducts });
+  const mockedValue = { data: mockProducts };
+  mockApi.get.mockResolvedValue(mockedValue);
 
   // act
   const result = await productService.getProducts();
 
   // assert
   expect(mockApi.get).toHaveBeenCalledWith(API_CONFIG.ENDPOINTS.PRODUCTS);
-  expect(result).toEqual(mockProducts);
+  expect(result).toEqual(mockedValue);
 });
 
 test('getProductById', async () => {
   // arrange
-  mockApi.get.mockResolvedValue({ data: mockProducts[1] });
+  const mockedValue = { data: mockProducts[1] };
+  mockApi.get.mockResolvedValue(mockedValue);
 
   // act
   const result = await productService.getProductById('2');
 
   // assert
   expect(mockApi.get).toHaveBeenCalledWith(`${API_CONFIG.ENDPOINTS.PRODUCTS}/2`);
-  expect(result).toEqual(mockProducts[1]);
+  expect(result).toEqual(mockedValue);
 });

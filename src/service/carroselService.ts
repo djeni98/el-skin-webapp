@@ -1,5 +1,5 @@
-import api from './api';
 import { API_CONFIG } from '../config/APIConfig';
+import apiFetch from './apiFetch';
  
 export interface ICarouselItem {
   subtitle: string;
@@ -10,8 +10,7 @@ export interface ICarouselItem {
 }
  
 export const carouselService = {
-  async getCarouselItems(): Promise<ICarouselItem[]> {
-    const response = await api.get<ICarouselItem[]>(API_CONFIG.ENDPOINTS.CAROUSEL);
-    return response.data;
+  async getCarouselItems() {
+    return await apiFetch.get<ICarouselItem[]>(API_CONFIG.ENDPOINTS.CAROUSEL);
   },
 };

@@ -22,17 +22,6 @@ const mockProducts = [
   }
 ];
 
-const mockLoading = false;
-const mockError = false;
-jest.mock('../../store/api/apiSlice', () => ({
-  useGetProductsQuery: () => ({
-    data: mockProducts,
-    isLoading: mockLoading,
-    error: mockError,
-  }),
-}));
-
-
 let mockSearchTerm = '';
 jest.mock('../../hooks/useSearch', () => ({
   useSearch: () => ({
@@ -50,7 +39,7 @@ jest.mock('../../hooks/useCart', () => ({
 const renderWithAct = async () => {
   let component;
   await act(async () => {
-    component = render(<ProductList />);
+    component = render(<ProductList products={mockProducts}/>);
   });
   return component;
 };
